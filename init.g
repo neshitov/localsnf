@@ -1,0 +1,2 @@
+
+ReadPackage( "LocalSNF", "LocalSmithNormalForm.gd" );
