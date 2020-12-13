@@ -3,9 +3,13 @@
 # written by Alexander Neshitov
 #############################################################################
 
-PKG_DIR:="/home/alexander/ch2bt_build/LocalSNF";
+PKG_DIR:="/home/alexander/localsnf";
 
-SNFTransform := function(mat, N)
+InstallMethod( SNFTransform,
+        "annotation",
+        [ IsMatrix, IsInt],
+        function( mat, N )
+
   # Smith Normal Form with transformations over Z / 2^N
 
   # Usage tr:=SNFTransform(mat, N : num_threads = <num_threads>)
@@ -34,6 +38,7 @@ SNFTransform := function(mat, N)
         cmd, exec_file,  path, s, mat_str, progress_line,
         tr;
 
+  mat:= mat mod 2^N;
   nrows:= DimensionsMat(mat)[1];
   ncols:= DimensionsMat(mat)[2];
   num_threads := ValueOption("num_threads");
@@ -62,9 +67,13 @@ SNFTransform := function(mat, N)
   CloseStream(s);
 
   return tr;
-end;
+end );
 
-SaturationVectors := function(mat, N)
+InstallMethod( SaturationVectors,
+        "annotation",
+        [ IsMatrix, IsInt],
+        function( mat, N )
+
   # Returns columns of row_t_inverse matrix of the SNFTransform
   # corresponding to non-invertible entries of SNF
 
@@ -72,6 +81,7 @@ SaturationVectors := function(mat, N)
         cmd, exec_file, path, s, mat_str, progress_line,
         vectors;
 
+  mat:= mat mod 2^N; 
   nrows:= DimensionsMat(mat)[1];
   ncols:= DimensionsMat(mat)[2];
   num_threads := ValueOption("num_threads");
@@ -100,4 +110,4 @@ SaturationVectors := function(mat, N)
   CloseStream(s);
 
   return vectors;
-end;
+end );

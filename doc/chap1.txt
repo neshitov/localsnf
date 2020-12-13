@@ -1,0 +1,54 @@
+  
+  [1X1 [33X[0;0YLocalSNF package[133X[101X
+  
+  
+  [1X1.1 [33X[0;0YMotivation[133X[101X
+  
+  [33X[0;0YCalculations  of  Smith  Normal form with transformations are hard for large
+  matrices since the coefficients of the matix become extremely large. In some
+  situations  it  is  sufficient  to find Smoth Normal Form and transformation
+  matrices  modulo  power  of  a  prime  number.  This package is developed to
+  compute  Smith  Normal  Form with transformations for matrices over the ring
+  Z/2^N. The reduction algorithm is implemented in C for speed-up purposes and
+  ability to use multithreading and binary arithmetic optimizations.[133X
+  
+  
+  [1X1.2 [33X[0;0YFunctions[133X[101X
+  
+  [33X[0;0YIn  this section we describe two functions implemented in this package. Both
+  functions take an optional parameter num_threads for how many threads to use
+  in reduction algorithm. By default 4 threads are used.[133X
+  
+  [1X1.2-1 SNFTransform[101X
+  
+  [33X[1;0Y[29X[2XSNFTransform[102X( [3Xmat[103X, [3XN[103X ) [32X function[133X
+  
+  [33X[0;0YThis  function  computes Smith Normal Form modulo 2^N of the integral matrix
+  mat.  It returns record with fields: SNF, row_t, row_t_inverse, col_t, rank,
+  power such that[133X
+  
+  [30X    [33X[0;6YSNF  is diagonal, its entries are powers of 2, and i entry divides i+1
+        entry for all i[133X
+  
+  [30X    [33X[0;6YSNF = row_t * mat * col_t mod 2^N[133X
+  
+  [30X    [33X[0;6Yrow_t * row_t_inverse = I, rank is the rank of SNF, power = N[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XSNFTransform([[1,2],[3,4]], 10: num_threads:=2);[127X[104X
+    [4X[28Xrec( SNF := [ [ 1, 0 ], [ 0, 2 ] ], col_t := [ [ 1, 1022 ], [ 0, 1 ] ],[128X[104X
+    [4X[28X  power := 10, rank := 2, row_t := [ [ 1, 0 ], [ 515, 511 ] ],[128X[104X
+    [4X[28X  row_t_inverse := [ [ 1, 0 ], [ 3, 511 ] ] )[128X[104X
+  [4X[32X[104X
+  
+  [33X[1;0Y[29X[2XSaturationVectors[102X( [3Xmat[103X, [3XN[103X ) [32X function[133X
+  
+  [33X[0;0YThis  function  a  minimal set of vectors such that together with columns of
+  mat they span a direct summand of the module (Z/2^N)^d where d is the number
+  of rows of mat.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XSaturationVectors([[1,2],[3,4]],10);[127X[104X
+    [4X[28X[ [ 0 ], [ 511 ] ][128X[104X
+  [4X[32X[104X
+  

@@ -1,0 +1,35 @@
+  
+  
+                              [1XThe [5XLocalSNF[105X Package[101X
+  
+  
+                                 Version 0.0.1
+  
+  
+                               Alexander Neshitov
+  
+  
+  
+  Alexander Neshitov
+      Email:    [7Xmailto:alexander.neshitov@gmail.com[107X
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2020 Alexander Neshitov.[133X
+  
+  [33X[0;0YThis  package  may  be distributed under the terms and conditions of the GNU
+  Public License Version 2 or (at your option) any later version.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (LocalSNF)[101X
+  
+  1 [33X[0;0YLocalSNF package[133X
+    1.1 [33X[0;0YMotivation[133X
+    1.2 [33X[0;0YFunctions[133X
+      1.2-1 SNFTransform
+  
+  
+  [32X

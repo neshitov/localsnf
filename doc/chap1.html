@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (LocalSNF) - Chapter 1: LocalSNF package</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapInd.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"></p>
+<p><a id="X7DD86B697CDC5E1F" name="X7DD86B697CDC5E1F"></a></p>
+<div class="ChapSects"><a href="chap1.html#X7DD86B697CDC5E1F">1 <span class="Heading">LocalSNF package</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X816FA3667FFEDC3F">1.1 <span class="Heading">Motivation</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X86FA580F8055B274">1.2 <span class="Heading">Functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X84D57A7D86DDCA1B">1.2-1 SNFTransform</a></span>
+</div></div>
+</div>
+
+<h3>1 <span class="Heading">LocalSNF package</span></h3>
+
+<p><a id="X816FA3667FFEDC3F" name="X816FA3667FFEDC3F"></a></p>
+
+<h4>1.1 <span class="Heading">Motivation</span></h4>
+
+<p>Calculations of Smith Normal form with transformations are hard for large matrices since the coefficients of the matix become extremely large. In some situations it is sufficient to find Smoth Normal Form and transformation matrices modulo power of a prime number. This package is developed to compute Smith Normal Form with transformations for matrices over the ring Z/2^N. The reduction algorithm is implemented in C for speed-up purposes and ability to use multithreading and binary arithmetic optimizations.</p>
+
+<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
+
+<h4>1.2 <span class="Heading">Functions</span></h4>
+
+<p>In this section we describe two functions implemented in this package. Both functions take an optional parameter num_threads for how many threads to use in reduction algorithm. By default 4 threads are used.</p>
+
+<p><a id="X84D57A7D86DDCA1B" name="X84D57A7D86DDCA1B"></a></p>
+
+<h5>1.2-1 SNFTransform</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SNFTransform</code>( <var class="Arg">mat</var>, <var class="Arg">N</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>This function computes Smith Normal Form modulo 2^N of the integral matrix mat. It returns record with fields: SNF, row_t, row_t_inverse, col_t, rank, power such that</p>
+
+
+<ul>
+<li><p>SNF is diagonal, its entries are powers of 2, and i entry divides i+1 entry for all i</p>
+
+</li>
+<li><p>SNF = row_t * mat * col_t mod 2^N</p>
+
+</li>
+<li><p>row_t * row_t_inverse = I, rank is the rank of SNF, power = N</p>
+
+</li>
+</ul>
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SNFTransform([[1,2],[3,4]], 10: num_threads:=2);</span>
+rec( SNF := [ [ 1, 0 ], [ 0, 2 ] ], col_t := [ [ 1, 1022 ], [ 0, 1 ] ],
+  power := 10, rank := 2, row_t := [ [ 1, 0 ], [ 515, 511 ] ],
+  row_t_inverse := [ [ 1, 0 ], [ 3, 511 ] ] )
+</pre></div>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SaturationVectors</code>( <var class="Arg">mat</var>, <var class="Arg">N</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>This function a minimal set of vectors such that together with columns of mat they span a direct summand of the module (Z/2^N)^d where d is the number of rows of mat.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SaturationVectors([[1,2],[3,4]],10);</span>
+[ [ 0 ], [ 511 ] ]
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapInd.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

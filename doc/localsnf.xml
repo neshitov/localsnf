@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--   LocalSNF documentation
+-->
+
+<!DOCTYPE Book SYSTEM "gapdoc.dtd">
+
+<Book Name="LocalSNF">
+
+<TitlePage>
+  <Title>The <Package>LocalSNF</Package> Package</Title>
+  <Version>Version 0.0.1</Version>
+  <Author>Alexander Neshitov
+    <Email>alexander.neshitov@gmail.com</Email>
+  </Author>
+
+  <Copyright>&copyright; 2020 Alexander Neshitov.<P/> This package may be distributed under the terms and conditions of
+  the GNU Public License Version 2 or (at your option) any later version.
+  </Copyright>
+</TitlePage>
+
+<TableOfContents/>
+
+<Body>
+  <Chapter> <Heading>LocalSNF package</Heading>
+    <Section> <Heading>Motivation</Heading>
+	Calculations of Smith Normal form with transformations are hard for large matrices
+since the coefficients of the matix become extremely large. In some situations it is sufficient to find Smoth Normal Form and transformation matrices modulo power of a prime number. This package is developed to compute Smith Normal Form with transformations for matrices over the ring Z/2^N. The reduction algorithm is implemented in C for speed-up purposes and ability to use multithreading and binary arithmetic optimizations.
+    </Section>
+
+    <Section> <Heading>Functions</Heading>
+      In this section we describe two functions implemented in this package. Both functions take an optional parameter num_threads for how many threads to use in reduction algorithm. By default 4 threads are used.
+      <ManSection>
+        <Func Name="SNFTransform" Arg="mat, N"/>
+        <Description>
+		This function computes Smith Normal Form modulo 2^N of the integral matrix mat.
+		It returns record with fields: SNF, row_t, row_t_inverse, col_t, rank, power such that
+		<List>
+			<Item> SNF is diagonal, its entries are powers of 2, and i entry divides i+1 entry for all i</Item>
+			<Item> SNF = row_t * mat * col_t mod 2^N</Item>
+			<Item> row_t * row_t_inverse = I, rank is the rank of SNF, power = N </Item>
+ 		</List>
+<Example>
+gap> SNFTransform([[1,2],[3,4]], 10: num_threads:=2);
+rec( SNF := [ [ 1, 0 ], [ 0, 2 ] ], col_t := [ [ 1, 1022 ], [ 0, 1 ] ],
+  power := 10, rank := 2, row_t := [ [ 1, 0 ], [ 515, 511 ] ],
+  row_t_inverse := [ [ 1, 0 ], [ 3, 511 ] ] )
+</Example>
+        </Description>
+
+        <Func Name="SaturationVectors" Arg="mat, N"/>
+        <Description>
+		This function a minimal set of vectors such that together with columns of mat they span a direct summand of the module (Z/2^N)^d where d is the number of rows of mat.
+<Example>
+gap> SaturationVectors([[1,2],[3,4]],10);
+[ [ 0 ], [ 511 ] ]
+</Example>
+        </Description>
+
+      </ManSection>
+    </Section>
+  </Chapter>
+</Body>
+
+<TheIndex/>
+
+</Book>
