@@ -1,0 +1,21 @@
+#SIXFORMAT  GapDocGAP
+HELPBOOKINFOSIXTMP := rec(
+encoding := "UTF-8",
+bookname := "LocalSNF",
+entries :=
+[ [ "Title page", ".", [ 0, 0, 0 ], 1, 1, "title page", "X7D2C85EC87DD46E5" ],
+  [ "Copyright", ".-1", [ 0, 0, 1 ], 17, 2, "copyright", "X81488B807F2A1CF1" ]
+    , [ "Table of Contents", ".-2", [ 0, 0, 2 ], 25, 3, "table of contents", 
+      "X8537FEB07AF2BEC8" ], 
+  [ "\033[1X\033[33X\033[0;-2YLocalSNF package\033[133X\033[101X", "1", 
+      [ 1, 0, 0 ], 1, 4, "localsnf package", "X7DD86B697CDC5E1F" ], 
+  [ "\033[1X\033[33X\033[0;-2YMotivation\033[133X\033[101X", "1.1", 
+      [ 1, 1, 0 ], 4, 4, "motivation", "X816FA3667FFEDC3F" ], 
+  [ "\033[1X\033[33X\033[0;-2YFunctions\033[133X\033[101X", "1.2", 
+      [ 1, 2, 0 ], 15, 4, "functions", "X86FA580F8055B274" ], 
+  [ "Index", "ind", [ "Ind", 0, 0 ], 1, 6, "index", "X83A0356F839C696F" ], 
+  [ "\033[2XSNFTransform\033[102X", "1.2-1", [ 1, 2, 1 ], 22, 4, 
+      "snftransform", "X84D57A7D86DDCA1B" ], 
+  [ "\033[2XSaturationVectors\033[102X", "1.2-1", [ 1, 2, 1 ], 22, 4, 
+      "saturationvectors", "X84D57A7D86DDCA1B" ] ]
+);

@@ -41,6 +41,7 @@ since the coefficients of the matix become extremely large. In some situations i
 			<Item> row_t * row_t_inverse = I, rank is the rank of SNF, power = N </Item>
  		</List>
 <Example>
+gap> LoadPackage("LocalSNF");
 gap> SNFTransform([[1,2],[3,4]], 10: num_threads:=2);
 rec( SNF := [ [ 1, 0 ], [ 0, 2 ] ], col_t := [ [ 1, 1022 ], [ 0, 1 ] ],
   power := 10, rank := 2, row_t := [ [ 1, 0 ], [ 515, 511 ] ],
@@ -52,6 +53,7 @@ rec( SNF := [ [ 1, 0 ], [ 0, 2 ] ], col_t := [ [ 1, 1022 ], [ 0, 1 ] ],
         <Description>
 		This function a minimal set of vectors such that together with columns of mat they span a direct summand of the module (Z/2^N)^d where d is the number of rows of mat.
 <Example>
+gap> LoadPackage("LocalSNF");
 gap> SaturationVectors([[1,2],[3,4]],10);
 [ [ 0 ], [ 511 ] ]
 </Example>

@@ -1,0 +1,5 @@
+\contentsline {chapter}{\numberline {1}\leavevmode {\color {Chapter }LocalSNF package}}{4}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}\leavevmode {\color {Chapter }Motivation}}{4}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}\leavevmode {\color {Chapter }Functions}}{4}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}\leavevmode {\color {Chapter }SNFTransform}}{4}{subsection.1.2.1}% 
+\contentsline {chapter}{Index}{6}{section*.3}% 
